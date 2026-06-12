@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* ============ ROOT VARIABLES - Greenhouse + Bourbon Theme ============ */
+:root {
+    /* Typography */
+    --font-sans: "DM Sans", "Inter", sans-serif;
+    --font-display: "Fraunces", serif;
+    --font-elegant: "Cormorant Garamond", serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    /* Greenhouse Earthy Palette */
+    --soil-dark: #1a1614;
+    --soil-medium: #2d2520;
+    --soil-light: #3d342e;
+    --moss-green: #4a6741;
+    --sage: #7d8a6e;
+    --leaf-green: #5c7a4a;
+    --herb: #8ba888;
+    --amber-wheat: #c4a265;
+    --golden-honey: #d4b87a;
+    --cream-parchment: #f5f0e8;
+    --cream-light: #faf7f2;
+    --warm-white: #fefcf8;
+    
+    /* Bourbon Refined Accents */
+    --bourbon-amber: #b8860b;
+    --copper: #b87351;
+    --bronze: #8b6914;
+    --aged-oak: #5c4033;
+    --charcoal: #2c2416;
+    --ivory: #fffff0;
+    
+    /* Functional Colors */
+    --text-primary: #1a1614;
+    --text-secondary: #5c5248;
+    --text-muted: #8a7e72;
+    --text-inverse: #f5f0e8;
+    --success: #4a6741;
+    --success-light: #e8f0e4;
+    --warning: #c4a265;
+    --warning-light: #faf3e5;
+    --danger: #8b3a3a;
+    --danger-light: #fce8e8;
+    --info: #5c7a8a;
+    --info-light: #e8f0f4;
+    
+    /* Surfaces */
+    --bg-primary: #fefcf8;
+    --bg-secondary: #faf7f2;
+    --bg-tertiary: #f5f0e8;
+    --surface-card: #ffffff;
+    --surface-glass: rgba(255, 255, 255, 0.85);
+    --surface-dark: #1a1614;
+    --surface-dark-secondary: #2d2520;
+    
+    /* Borders */
+    --border-light: #e8e0d4;
+    --border-medium: #d4c8b8;
+    --border-dark: #8a7e72;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(26, 22, 20, 0.06);
+    --shadow-md: 0 4px 20px rgba(26, 22, 20, 0.08);
+    --shadow-lg: 0 8px 40px rgba(26, 22, 20, 0.12);
+    --shadow-xl: 0 20px 60px rgba(26, 22, 20, 0.16);
+    
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, #c4a265 0%, #b8860b 100%);
+    --gradient-earth: linear-gradient(135deg, #4a6741 0%, #5c7a4a 100%);
+    --gradient-sunset: linear-gradient(135deg, #b87351 0%, #c4a265 100%);
+    --gradient-dark: linear-gradient(135deg, #1a1614 0%, #2d2520 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,240,232,0.9) 100%);
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============ GLOBAL RESET ============ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ============ SUBTLE GRAIN TEXTURE OVERLAY ============ */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+}
+
+/* ============ BOTANICAL ACCENT LINE (Top of pages) ============ */
+.botanical-accent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-earth);
+    z-index: 10000;
+    opacity: 0.8;
+}
+
+/* ============ CUSTOM SCROLLBAR ============ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sage);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--moss-green);
+}
+
+/* ============ SELECTION STYLE ============ */
+::selection {
+    background: rgba(74, 103, 65, 0.2);
+    color: var(--soil-dark);
+}
+
+/* ============ NAVIGATION BAR ============ */
+.navbar-premium {
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all var(--transition-smooth);
+}
+
+.navbar-premium.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+.nav-brand {
+    font-family: var(--font-elegant);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--soil-dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-brand .brand-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient-earth);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.nav-brand .brand-year {
+    font-family: var(--font-elegant);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    border-left: 1px solid var(--border-medium);
+    padding-left: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.nav-link-premium {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem !important;
+    position: relative;
+    transition: all var(--transition-smooth);
+    letter-spacing: 0.02em;
+}
+
+.nav-link-premium::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 2px;
+    background: var(--moss-green);
+    transition: transform var(--transition-spring);
+    border-radius: var(--radius-full);
+}
+
+.nav-link-premium:hover {
+    color: var(--soil-dark) !important;
+}
+
+.nav-link-premium:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.nav-link-premium.active {
+    color: var(--moss-green) !important;
+    font-weight: 600;
+}
+
+.nav-link-premium.active::after {
+    transform: translateX(-50%) scaleX(1);
+    background: var(--moss-green);
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    padding: 0.7rem 1.8rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    letter-spacing: 0.03em;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateX(100%);
+}
+
+.btn-primary {
+    background: var(--gradient-earth);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 103, 65, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 103, 65, 0.4);
+}
+
+.btn-secondary {
+    background: var(--surface-card);
+    color: var(--soil-dark);
+    border: 1.5px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+    border-color: var(--moss-green);
+    color: var(--moss-green);
+    transform: translateY(-2px);
+}
+
+.btn-amber {
+    background: var(--gradient-warm);
+    color: var(--soil-dark);
+    box-shadow: 0 4px 15px rgba(196, 162, 101, 0.3);
+}
+
+.btn-amber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(196, 162, 101, 0.4);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-light);
+}
+
+.btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ============ CARDS ============ */
+.card-premium {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-earth);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-smooth);
+}
+
+.card-premium:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.card-premium:hover::before {
+    transform: scaleX(1);
+}
+
+/* ============ STAT CARDS (Greenhouse Dashboard Style) ============ */
+.stat-card-garden {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card-garden::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    transform: translate(30%, 30%);
+    transition: all var(--transition-smooth);
+}
+
+.stat-card-garden:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.stat-card-garden:hover::after {
+    transform: translate(20%, 20%) scale(1.2);
+}
+
+.stat-icon-garden {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.stat-icon-garden.green {
+    background: var(--success-light);
+    color: var(--moss-green);
+}
+
+.stat-icon-garden.amber {
+    background: var(--warning-light);
+    color: var(--bourbon-amber);
+}
+
+.stat-icon-garden.copper {
+    background: #fdf0e8;
+    color: var(--copper);
+}
+
+.stat-icon-garden.sage {
+    background: #f0f4ee;
+    color: var(--sage);
+}
+
+.stat-content-garden .stat-value {
+    font-family: var(--font-elegant);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--soil-dark);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.stat-content-garden .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+}
+
+/* ============ TASK CARDS (Like Greenhouse Tasks) ============ */
+.task-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+    transition: all var(--transition-smooth);
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+.task-card:hover {
+    box-shadow: var(--shadow-sm);
+    border-left-color: var(--moss-green);
+}
+
+.task-card .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.task-card .task-title {
+    font-weight: 600;
+    color: var(--soil-dark);
+    font-size: 0.95rem;
+}
+
+.task-card .task-description {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.task-card .task-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.task-card .task-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-progress-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.task-progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.6s ease;
+}
+
+.task-progress-fill.green {
+    background: var(--moss-green);
+}
+
+.task-progress-fill.amber {
+    background: var(--bourbon-amber);
+}
+
+/* ============ FORM ELEMENTS ============ */
+.form-control-premium {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    transition: all var(--transition-smooth);
+}
+
+.form-control-premium:focus {
+    outline: none;
+    border-color: var(--moss-green);
+    background: var(--surface-card);
+    box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.form-control-premium::placeholder {
+    color: var(--text-muted);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+}
+
+/* ============ BADGES ============ */
+.badge-premium {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.badge-success {
+    background: var(--success-light);
+    color: var(--moss-green);
+}
+
+.badge-warning {
+    background: var(--warning-light);
+    color: var(--bourbon-amber);
+}
+
+.badge-info {
+    background: var(--info-light);
+    color: var(--info);
+}
+
+.badge-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+@keyframes leaf-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(2deg); }
+    75% { transform: translateY(5px) rotate(-2deg); }
+}
+
+@keyframes grow-width {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+/* ============ UTILITY CLASSES ============ */
+.animate-fade-up {
+    animation: fadeInUp 0.6s ease both;
+}
+
+.animate-fade-up-delay-1 { animation-delay: 0.1s; }
+.animate-fade-up-delay-2 { animation-delay: 0.2s; }
+.animate-fade-up-delay-3 { animation-delay: 0.3s; }
+.animate-fade-up-delay-4 { animation-delay: 0.4s; }
+
+.text-display {
+    font-family: var(--font-elegant);
+    font-weight: 700;
+}
+
+.text-gradient-earth {
+    background: var(--gradient-earth);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    html { font-size: 14px; }
+    .navbar-premium { padding: 0.6rem 1rem; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 13px; }
+}
